@@ -24,7 +24,7 @@ def speak_callback(data):
     if s is None:
         print 'could not open socket'
         sys.exit(1)
-    s.sendall('Hello, world')
+    s.sendall(data)
     s.close()
 
 #Subscriber
