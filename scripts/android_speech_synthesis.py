@@ -3,11 +3,13 @@ import sys
 import rospy
 from std_msgs.msg import String
 
-HOST = '192.168.178.25'    # The remote host
-PORT = 8051              # The same port as used by the server
 def speak_callback(data):
+
+    host = rospy.get_param("~host", "192.168.178.25")
+    port = int(rospy.get_param("~port", 8051))
+
     s = None
-    for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM):
+    for res in socket.getaddrinfo(host, port, socket.AF_UNSPEC, socket.SOCK_STREAM):
         af, socktype, proto, canonname, sa = res
         try:
             s = socket.socket(af, socktype, proto)
@@ -33,4 +35,5 @@ speak_sub = rospy.Subscriber('/speak', String, speak_callback)
 if __name__ == '__main__':
     rospy.init_node('android_speech_synthesis_node')
     rospy.loginfo("android_speech_synthesis_node initialized")
+
     rospy.spin()
