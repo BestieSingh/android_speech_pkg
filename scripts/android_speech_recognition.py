@@ -29,7 +29,7 @@ rospy.loginfo("android speech recognition node initialized")
 
 
 host = rospy.get_param("~host","")   # Symbolic name meaning all available interfaces
-port = int(rospy.get_param("~host","8051"))# Arbitrary non-privileged port
+port = int(rospy.get_param("~port","8050"))  # Arbitrary non-privileged port
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print 'Socket created'
